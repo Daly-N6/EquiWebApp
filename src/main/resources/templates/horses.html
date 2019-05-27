@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--<th:block th:include="fragments/htmlHead :: head"></th:block>></th>-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+        <!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+     <div> 
+        <!-- Bootstrap-->
+            <!-- Column 2 - Horses List -->
+                <div class="col-sm-12">
+                    <h3>Horses</h3>
+                    <!-- Search box-->
+                    <!-- mb-4 BootStrap class adds a bottom margin -->
+                    <div class="mb-8"> <!-- https://getbootstrap.com/docs/4.0/utilities/spacing/ -->
+                        <!-- https://getbootstrap.com/docs/4.0/components/forms/ -->
+                        <form th:action="@{/searchHorses}" method="get" class="form-inline needs-validation">
+                            <div class="form-group">
+                                <input microchip="search" horsename="search" sex="search" breed="search" dateofbirth="search" weight="search" height="search" ownID ="search", required>
+                            </div>
+                            <button type="submit" class="btn btn-primary"><span class="oi oi-magnifying-glass"></span></button>
+                        </form>
+                    </div>
+
+
+         <!-- Add table if the products list contains products-->
+                <!-- Bootstrap: https://getbootstrap.com/docs/4.0/content/tables/-->
+                <table class="table table-bordered table-striped" th:if="${not #lists.isEmpty(horses)}">
+                        <!-- Table header row -->
+                <tr> 
+                  <th>Microchip</th> 
+                  <th>HorseName</th> 
+                  <th>DateOfBirth</th> 
+                  <th>Sex</th> 
+                  <th>Weight</th> 
+                  <th>Breed</th> 
+                  <th>Height</th>
+                  <th>OwnID</th>
+                </tr> 
+                <tr th:each="horses :${horses}"> 
+                    <td th:text="${horses.Microchip}"></td> 
+                    <td th:text="${horses.HorseName}"></td> 
+                    <td th:text="${horses.DateOfBirth}"></td> 
+                    <td th:text="${horses.Sex}"></td> 
+                    <td th:text="${horses.Weight}"></td>
+                    <td th:text="${horses.Breed}"></td>                    
+                    <td th:text="${horses.Height}"></td> 
+                    <td th:text="${horses.OwnID}"></td>
+                    <td></td>  
+                    
+                    <td><a th:href="@{'/updateHorses/?micrchip=' + ${horses.microchip}}" class="btn-sm btn-danger" role="button"><span class="oi oi-pencil"></span></a></td>
+                    <td><a th:href="@{'/deleteHorses/?id=' + ${horses.microchip}}" onclick="return confirmDelete();" class="btn-sm btn-danger" role="button"><span class="oi oi-trash"></span></a></td>
+                </tr> 
+            </table> 
+            <p>
+                    <a href="/newHorses" th:href="@{/newHorses}" class="btn btn-primary" role="button">Add Horses</a>
+                </p>
+            </div> <!-- End Products col -->
+        </div> <!-- End row -->
+    </div> <!-- End container -->
+    <script>
+        // JavaScript function returns true if user clicks yes, otherwise, false
+        // true - proceed (open link)
+        // false - cancel
+        function confirmDelete() {
+            return confirm('Are you sure?');
+        }
+    </script>
+
+         <!--<th:block th:include="fragments/footer :: footer"></th:block>-->
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+       
+    </body>
+</html>

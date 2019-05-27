@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link Bootstrap 4 from CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    
+    <title>horsess</title>
+</head>
+<body>
+    <!--/*/ <th:block th:include="fragments/navigation :: navigation"></th:block> /*/-->
+    <p></p>
+    <p></p>
+    <!-- Bootstrap-->
+              <!-- horses List -->
+            <div class="col-sm-9">
+                <h3>Add Horses</h3>
+                <!-- https://getbootstrap.com/docs/4.0/components/forms/ -->
+                <form th:object="${horses}" th:action="@{/newhorses}" method="post" class="needs-validation">
+                    <input type="hidden" th:field="*{microchip}"/>
+                    <div class="form-group">
+                        <label for="horsesName">horses Name</label>
+                        <input th:field="*{horsesName}" type="text" class="form-control" placeholder=""  required>
+                    </div>
+                    <div class="form-group">
+                        <label for="Breed">horses Description</label>
+                        <input th:field="*{Breed}" type="text" class="form-control" placeholder=""  required>
+                    </div>
+                    <div class="form-group">
+                            <label for="Sex">horses Description</label>
+                            <input th:field="*{Sex}" type="text" class="form-control" placeholder=""  required>
+                        </div>
+                    <div class="form-group">
+                        <label for="DateOfBirth">Stock level</label>
+                        <input th:field="*{DateOfBirth}" type="number" class="form-control" placeholder="0" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="weight">Price</label>
+                        <input th:field="*{Weight}" type="number" class="form-control" placeholder="0" required>
+                    </div>
+                    <div class="form-group">
+                            <label for="Height">Price</label>
+                            <input th:field="*{Height}" type="number" class="form-control" placeholder="0" required>
+                        </div>
+                    <button type="submit" class="btn btn-warning">Submit</button>
+                    <a href="/horsess" th:href="@{/horsess}" class="btn btn-primary" role="button">Cancel</a>
+                </form>
+    </div> <!-- End container -->
+    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+</body>
+</html>
